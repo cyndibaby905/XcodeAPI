@@ -1,0 +1,26 @@
+
+
+#import <Foundation/Foundation.h>
+
+@class NSFileHandle, NSString;
+
+@interface IDEPseudoTerminal : NSObject
+{
+    int _masterFD;
+    int _slaveFD;
+    NSFileHandle *_masterFileHandle;
+    NSString *_slaveName;
+}
+
+@property(readonly) int slaveFD; // @synthesize slaveFD=_slaveFD;
+@property(readonly) NSString *slaveName; // @synthesize slaveName=_slaveName;
+@property(readonly) NSFileHandle *masterFileHandle; // @synthesize masterFileHandle=_masterFileHandle;
+@property(readonly) NSFileHandle *slaveFileHandle;
+- (int)_openSlaveCounterpart:(int)arg1 error:(id *)arg2;
+- (BOOL)_openFirstAvailableMasterWithAccessMode:(int)arg1 error:(id *)arg2;
+- (void)_closeMasterFD;
+- (id)initWithAccessMode:(int)arg1 error:(id *)arg2;
+- (id)initWithAccessMode:(int)arg1 ownsSlaveFileDescriptor:(BOOL)arg2 error:(id *)arg3;
+
+@end
+
